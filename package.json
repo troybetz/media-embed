@@ -1,0 +1,38 @@
+{
+  "name": "media-embed",
+  "version": "1.0.0",
+  "description": "embed popular media formats using noembed.com",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:compedit/media-embed.git"
+  },
+  "keywords": [
+    "embed",
+    "media",
+    "noembed",
+    "soundcloud",
+    "youtube",
+    "vimeo"
+  ],
+  "author": "troy betz <troybetz@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compedit/media-embed/issues"
+  },
+  "homepage": "https://github.com/compedit/media-embed",
+  "dependencies": {
+    "domify": "^1.3.1",
+    "jsonp": "0.0.4"
+  },
+  "devDependencies": {
+    "browserify": "^6.3.2",
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1",
+    "proxyquire": "^1.0.1",
+    "proxyquire-universal": "^1.0.1",
+    "proxyquireify": "^1.1.0",
+    "sinon": "^1.12.1",
+    "watchify": "^2.1.1"
+  }
+}
