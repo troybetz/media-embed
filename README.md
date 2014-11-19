@@ -1,6 +1,6 @@
 # media-embed
 
-embed popular media formats using noembed.com
+embed popular media formats using [noembed.com](http://noembed.com/)
 
 
 ## Installation
