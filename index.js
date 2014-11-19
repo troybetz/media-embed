@@ -12,12 +12,14 @@ var domify = require('domify');
 module.exports = mediaEmbed;
 
 /**
- * Embed a `url` within a `parent` element
+ * Embed some `url` within a `parent`. 
+ *
+ * Works with every media provider listed at http://noembed.com/, though
+ * the formatting for things like tweets & gists are a little wonky.
  *
  * @param {String} url
  * @param {Object} [parent]
  */
-
 
 function mediaEmbed(url, parent) {
   if (!url) throw new Error('url required for embedding');
@@ -49,7 +51,7 @@ function getEmbedHTML(url, cb) {
 }
 
 /**
- * Append `html` to `parent`
+ * Append `html` to `parent` element
  *
  * @param {String} html
  * @param {Object} parent
