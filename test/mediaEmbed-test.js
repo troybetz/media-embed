@@ -25,19 +25,15 @@ describe('mediaEmbed', function() {
       mediaEmbed('http://somebadurl.com');
       jsonpStub.yield(null, {});
     }
-    expect(fn).to.throw('media not supported');
+    expect(fn).to.throw('unable to embed http://somebadurl.com');
   });
 
   it('should append embed html to a `parent`', function() {
     var parent = document.createElement('div');
-    parent.id = 'parent';
     document.body.appendChild(parent);
 
     mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes', parent);      
-
-    jsonpStub.yield(null, {
-      html: '<p id="embed">a new embed</p>'
-    });
+    jsonpStub.yield(null, {html: '<p id="embed">a new embed</p>'});
 
     var embed = document.querySelector('#embed');
 
@@ -47,10 +43,7 @@ describe('mediaEmbed', function() {
 
   it('should append embed html to document.body if `parent` is omitted', function() {
     mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes');      
-
-    jsonpStub.yield(null, {
-      html: '<p id="embed">a new embed</p>'
-    });
+    jsonpStub.yield(null, {html: '<p id="embed">a new embed</p>'});
 
     var embed = document.querySelector('#embed');
 

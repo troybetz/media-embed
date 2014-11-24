@@ -42,10 +42,10 @@ function mediaEmbed(url, parent) {
  */
 
 function getEmbedHTML(url, cb) {
-  var url = 'https://noembed.com/embed?url=' + url + '&nowrap=on';
-  jsonp(url, function(err, data) {
+  var noembedUrl = 'https://noembed.com/embed?url=' + url + '&nowrap=on';
+  jsonp(noembedUrl, function(err, data) {
     if (err) cb(err);
-    if (!data.html) cb(new Error('media not supported'));
+    if (!data.html) cb(new Error('unable to embed ' + url));
     cb(null, data.html);
   });
 }
