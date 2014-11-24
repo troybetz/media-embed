@@ -17,4 +17,4 @@ clean:
 	rm -rf node_modules
 	rm **/bundle.js
 
-.PHONY: test clean
+.PHONY: setup test example clean
