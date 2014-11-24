@@ -1,6 +1,6 @@
 var chai = require('chai');
 var sinon = require('sinon');
-var proxyquire = require('proxyquire');
+var proxyquire = require('proxyquireify')(require);
 var expect = chai.expect;
 var jsonpStub;
 var mediaEmbed;

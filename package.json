@@ -29,8 +29,6 @@
     "browserify": "^6.3.2",
     "chai": "^1.10.0",
     "mocha": "^2.0.1",
-    "proxyquire": "^1.0.1",
-    "proxyquire-universal": "^1.0.1",
     "proxyquireify": "^1.1.0",
     "sinon": "^1.12.1",
     "watchify": "^2.1.1"

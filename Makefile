@@ -4,7 +4,7 @@ setup:
 	npm install
 
 test/bundle.js: test/mediaEmbed-test.js
-	$(BIN)/watchify -p proxyquire-universal $^ -o $@
+	$(BIN)/watchify -p proxyquireify/plugin $^ -o $@
 
 example/bundle.js: example/example.js
 	$(BIN)/browserify $^ > $@
