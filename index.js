@@ -12,25 +12,21 @@ var domify = require('domify');
 module.exports = mediaEmbed;
 
 /**
- * Embed some `url` within a `parent`. 
+ * Return embed ready html for a `url`. 
  *
  * Works with every media provider listed at http://noembed.com/, though
  * the formatting for things like tweets & gists are a little wonky.
  *
- * @param {String} url
- * @param {Object} [parent]
+ * @param {String} url to be embedded
+ * @param {Function} cb
  */
 
-function mediaEmbed(url, parent) {
-  if (!url) throw new Error('url required for embedding');
-
-  if (!parent) {
-    parent = document.body;
-  }
+function mediaEmbed(url, cb) {
+  if (typeof url != 'string') throw new Error('valid url required for embedding');
 
   getEmbedHTML(url, function(err, html) {
-    if (err) throw err;
-    embed(html, parent);
+    if (err) return cb(err);
+    cb(null, domify(html));
   });
 }
 
@@ -43,21 +39,10 @@ function mediaEmbed(url, parent) {
 
 function getEmbedHTML(url, cb) {
   var noembedUrl = 'https://noembed.com/embed?url=' + url + '&nowrap=on';
+
   jsonp(noembedUrl, function(err, data) {
-    if (err) cb(err);
-    if (!data.html) cb(new Error('unable to embed ' + url));
+    if (err) return cb(err);
+    if (!data.html) return cb(new Error('unable to embed ' + url));
     cb(null, data.html);
   });
-}
-
-/**
- * Append `html` to `parent` element
- *
- * @param {String} html
- * @param {Object} parent
- */
-
-function embed(html, parent) {
-  var embed = domify(html);
-  parent.appendChild(embed);
 }

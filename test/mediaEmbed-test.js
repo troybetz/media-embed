@@ -11,43 +11,47 @@ describe('mediaEmbed', function() {
     mediaEmbed = proxyquire('../', {'jsonp': jsonpStub});
   });
 
-  it('should throw an error if called without `url`', function() {
-    expect(mediaEmbed).to.throw('url required for embedding');
+  it('should throw an error if called with invalid `url`', function() {
+    expect(mediaEmbed).to.throw('valid url required for embedding');
   });
 
-  it('should retrieve embed html from noembed.com', function() {
+  it('should retrieve embed data from noembed.com', function() {
     mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes');
     expect(jsonpStub.firstCall.args[0]).to.equal('https://noembed.com/embed?url=https://soundcloud.com/hudsonmohawke/chimes&nowrap=on');
   });
 
-  it('should throw an error if embed html isnt returned', function() {
-    function fn() {
-      mediaEmbed('http://somebadurl.com');
-      jsonpStub.yield(null, {});
-    }
-    expect(fn).to.throw('unable to embed http://somebadurl.com');
+  it('should return an error if no embed data is returned', function(done) {
+    mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes', function(err, embed) {
+      expect(err).not.to.be.null();
+      expect(err.message).to.equal('unable to embed https://soundcloud.com/hudsonmohawke/chimes');
+      expect(embed).to.be.undefined();
+      done();
+    });
+
+    jsonpStub.yield(null, {});
   });
 
-  it('should append embed html to a `parent`', function() {
-    var parent = document.createElement('div');
-    document.body.appendChild(parent);
+  it('should return an error if embed request fails', function(done) {
+    mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes', function(err, embed) {
+      expect(err).not.to.be.null();
+      expect(err.message).to.equal('some network error');
+      expect(embed).to.be.undefined();
+      done();
+    });
 
-    mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes', parent);      
-    jsonpStub.yield(null, {html: '<p id="embed">a new embed</p>'});
-
-    var embed = document.querySelector('#embed');
-
-    expect(parent.contains(embed)).to.be.ok();
-    document.body.removeChild(parent);
+    jsonpStub.yield(new Error('some network error'), {});
   });
 
-  it('should append embed html to document.body if `parent` is omitted', function() {
-    mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes');      
-    jsonpStub.yield(null, {html: '<p id="embed">a new embed</p>'});
+  it('should return embed html as a DOMElement', function(done) {
+    mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes', function(err, embed) {
+      expect(err).to.be.null();
+      expect(embed).not.to.be.undefined();
+      expect(embed.nodeName).to.equal('DIV');
+      done();
+    });
 
-    var embed = document.querySelector('#embed');
-
-    expect(document.body.contains(embed)).to.be.ok();
-    document.body.removeChild(embed);
+    jsonpStub.yield(null, {
+      html: '<div>I am an embedded thing.</div>'
+    });
   });
 });
