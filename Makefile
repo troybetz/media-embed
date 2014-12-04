@@ -2,16 +2,18 @@ BIN = node_modules/.bin
 
 setup:
 	npm install
+	mkdir example/build
 
 test: test/bundle.js
 
-example: example/bundle.js
 
-gh-pages: example/bundle.js
-	git checkout gh-pages
-	git merge master
-	git push origin gh-pages
-	git checkout master
+example: example/build/bundle.js example/build/bundle.css
+
+example/build/bundle.js: example/example.js
+	$(BIN)/browserify $^ -o $@
+
+example/build/bundle.css: example/example.css
+	$(BIN)/autoprefixer $^ -o $@
 
 test/bundle.js: test/mediaEmbed-test.js
 	$(BIN)/watchify -p proxyquireify/plugin $^ -o $@
