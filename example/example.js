@@ -20,9 +20,11 @@ var urls = [
  */
 
 urls.forEach(function(url) {
-	mediaEmbed(url, function(err, embed) {
+	mediaEmbed(url, function(err, embed, data) {
 		if (err) throw err;
 		addToPage(embed);
+    console.log(data.provider_name, 'response:', data);
+    console.log('\n');
 	});
 });
 

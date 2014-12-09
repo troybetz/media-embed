@@ -21,8 +21,9 @@ var mediaEmbed = require('media-embed');
  * Retrieve embed element
  */
  
-mediaEmbed('http://www.youtube.com/watch?v=iEe_eraFWWs', function(err, embed) {
+mediaEmbed('http://www.youtube.com/watch?v=iEe_eraFWWs', function(err, embed, data) {
 	document.body.appendChild(embed); // ready for embedding
+  console.log(data); // => entire noembed.com response 
 });
 
 ```

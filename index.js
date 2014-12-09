@@ -24,9 +24,9 @@ module.exports = mediaEmbed;
 function mediaEmbed(url, cb) {
   if (typeof url != 'string') throw new Error('valid url required for embedding');
 
-  getEmbedHTML(url, function(err, html) {
+  getEmbedHTML(url, function(err, data) {
     if (err) return cb(err);
-    cb(null, domify(html));
+    cb(null, domify(data.html), data);
   });
 }
 
@@ -43,6 +43,6 @@ function getEmbedHTML(url, cb) {
   jsonp(noembedUrl, function(err, data) {
     if (err) return cb(err);
     if (!data.html) return cb(new Error('unable to embed ' + url));
-    cb(null, data.html);
+    cb(null, data);
   });
 }
