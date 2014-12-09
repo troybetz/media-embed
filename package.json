@@ -1,6 +1,6 @@
 {
   "name": "media-embed",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "embed popular media formats using noembed.com",
   "main": "index.js",
   "repository": {
