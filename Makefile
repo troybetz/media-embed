@@ -6,7 +6,6 @@ setup:
 
 test: test/bundle.js
 
-
 example: example/build/bundle.js example/build/bundle.css
 
 example/build/bundle.js: example/example.js
@@ -22,7 +21,6 @@ example/bundle.js: example/example.js
 	$(BIN)/browserify $^ -o $@
 
 clean:
-	rm -rf node_modules
-	rm **/bundle.js
+	rm -rf node_modules example/build
 
-.PHONY: setup test example clean gh-pages
+.PHONY: setup test example clean
