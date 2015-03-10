@@ -1,8 +1,8 @@
-jest.dontMock('../');
+jest.dontMock('../src/index.js');
 
 import jsonp from 'jsonp';
 import domify from 'domify';
-import mediaEmbed from '../';
+import mediaEmbed from '../src/index.js';
 
 /**
  * Actual response from noembed.com

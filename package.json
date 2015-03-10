@@ -2,7 +2,7 @@
   "name": "media-embed",
   "version": "2.1.0",
   "description": "embed popular media formats using noembed.com",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:compedit/media-embed.git"
@@ -37,6 +37,7 @@
   },
   "scripts": {
     "test": "jest",
+    "dist": "babel src --out-dir dist",
     "example": "webpack --config example/webpack.config.js"
   },
   "jest": {
