@@ -27,11 +27,28 @@
   },
   "devDependencies": {
     "autoprefixer": "^4.0.0",
+    "babel-jest": "^4.0.0",
     "browserify": "^6.3.2",
-    "chai": "^1.10.0",
-    "mocha": "^2.0.1",
-    "proxyquireify": "^1.1.0",
-    "sinon": "^1.12.1",
+    "jest-cli": "^0.4.0",
     "watchify": "^2.1.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": [
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "unmockedModulePathPatterns": [
+      "./node_modules/promise"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/example/"
+    ]
   }
 }
