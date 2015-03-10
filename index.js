@@ -2,17 +2,11 @@
  * Module dependencies
  */
 
-var jsonp = require('jsonp');
-var domify = require('domify');
+import jsonp from 'jsonp';
+import domify from 'domify';
 
 /**
- * Expose `mediaEmbed`
- */
-
-module.exports = mediaEmbed;
-
-/**
- * Return embed ready html for a `url`. 
+ * Return embed ready html for a `url`.
  *
  * Works with every media provider listed at http://noembed.com/, though
  * the formatting for things like tweets & gists are a little wonky.
@@ -21,28 +15,36 @@ module.exports = mediaEmbed;
  * @param {Function} cb
  */
 
-function mediaEmbed(url, cb) {
-  if (typeof url != 'string') throw new Error('valid url required for embedding');
+export default (url, cb) => {
+  if (typeof url != 'string') {
+    throw new Error('valid url required for embedding');
+  }
 
-  getEmbedHTML(url, function(err, data) {
+  getEmbedData(url, (err, data) => {
     if (err) return cb(err);
     cb(null, domify(data.html), data);
   });
-}
+};
 
 /**
- * Retrieve embed `html` for a `url`
+ * Retrieve embed data for a `url`
  *
  * @param {String} url
  * @param {Function} cb
  */
 
-function getEmbedHTML(url, cb) {
-  var noembedUrl = 'https://noembed.com/embed?url=' + url + '&nowrap=on';
+const getEmbedData = (url, cb) => {
+  const noembedUrl = `https://noembed.com/embed?url=${url}&nowrap=on`;
 
-  jsonp(noembedUrl, function(err, data) {
-    if (err) return cb(err);
-    if (!data.html) return cb(new Error('unable to embed ' + url));
+  jsonp(noembedUrl, (err, data) => {
+    if (err) {
+      return cb(err);
+    }
+
+    if (!data.html) {
+      return cb(new Error('unable to embed ' + url));
+    }
+
     cb(null, data);
   });
-}
+};
