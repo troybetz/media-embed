@@ -2,10 +2,12 @@
  * Module dependencies
  */
 
-var mediaEmbed = require('../');
-var container = document.querySelector('.content');
+import mediaEmbed from '../';
+import './example.css';
 
-var urls = [
+const container = document.querySelector('.content');
+
+const urls = [
 	'https://soundcloud.com/hudsonmohawke/chimes',
   'https://www.youtube.com/watch?v=8lXdyD2Yzls',
   'https://vine.co/v/O5O23XurHgw',
@@ -19,22 +21,24 @@ var urls = [
  * Take each of the urls, and add them onto the page.
  */
 
-urls.forEach(function(url) {
-	mediaEmbed(url, function(err, embed, data) {
-		if (err) throw err;
-		addToPage(embed);
-    console.log(data.provider_name, 'response:', data);
-    console.log('\n');
-	});
+urls.forEach((url) => {
+  mediaEmbed(url, (err, embed, data) => {
+    if (err) throw err;
+    addToPage(embed);
+
+    console.log(data.provider_name, 'response:', data, '\n');
+  });
 });
 
 /**
- * util
+ * Add `embed` html to page
+ *
+ * @param {Object} embed
  */
 
-function addToPage(embed) {
-  var wrapper = document.createElement('div');
+const addToPage = (embed) => {
+  const wrapper = document.createElement('div');
   wrapper.classList.add('noembed-container');
   wrapper.appendChild(embed);
   container.appendChild(wrapper);
-}
+};
