@@ -6,7 +6,7 @@ import jsonp from 'jsonp';
 import domify from 'domify';
 
 /**
- * Return embed ready html for a `url`.
+ * Return embed data for `url`.
  *
  * Works with every media provider listed at http://noembed.com/, though
  * the formatting for things like tweets & gists are a little wonky.
@@ -16,7 +16,7 @@ import domify from 'domify';
  */
 
 export default (url, cb) => {
-  if (typeof url != 'string') {
+  if (typeof url !== 'string') {
     throw new Error('valid url required for embedding');
   }
 

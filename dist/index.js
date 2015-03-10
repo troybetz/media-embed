@@ -11,7 +11,7 @@ var jsonp = _interopRequire(require("jsonp"));
 var domify = _interopRequire(require("domify"));
 
 /**
- * Return embed ready html for a `url`.
+ * Return embed data for `url`.
  *
  * Works with every media provider listed at http://noembed.com/, though
  * the formatting for things like tweets & gists are a little wonky.
@@ -21,7 +21,7 @@ var domify = _interopRequire(require("domify"));
  */
 
 module.exports = function (url, cb) {
-  if (typeof url != "string") {
+  if (typeof url !== "string") {
     throw new Error("valid url required for embedding");
   }
 
