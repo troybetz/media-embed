@@ -12,19 +12,19 @@ import domify from 'domify';
  * the formatting for things like tweets & gists are a little wonky.
  *
  * @param {String} url to be embedded
- * @param {Function} cb
+ * @param {Function} callback
  */
 
-export default (url, cb) => {
+export default (url, callback) => {
   if (typeof url !== 'string') {
-    return cb(new Error('valid url required for embedding'));
+    return callback(new Error('valid url required for embedding'));
   }
 
   getEmbedData(url, (err, data) => {
     if (err) {
-      return cb(err);
+      return callback(err);
     }
-    cb(null, domify(data.html), data);
+    callback(null, domify(data.html), data);
   });
 };
 
@@ -32,21 +32,21 @@ export default (url, cb) => {
  * Retrieve embed data for a `url`
  *
  * @param {String} url
- * @param {Function} cb
+ * @param {Function} callback
  */
 
-const getEmbedData = (url, cb) => {
+const getEmbedData = (url, callback) => {
   const noembedUrl = `https://noembed.com/embed?url=${url}&nowrap=on`;
 
   jsonp(noembedUrl, (err, data) => {
     if (err) {
-      return cb(err);
+      return callback(err);
     }
 
     if (!data.html) {
-      return cb(new Error('unable to embed ' + url));
+      return callback(new Error('unable to embed ' + url));
     }
 
-    cb(null, data);
+    callback(null, data);
   });
 };
