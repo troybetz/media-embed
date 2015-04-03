@@ -2,7 +2,7 @@
   "name": "media-embed",
   "version": "2.1.0",
   "description": "embed popular media formats using noembed.com",
-  "main": "dist/index.js",
+  "main": "dist/mediaEmbed.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:compedit/media-embed.git"
