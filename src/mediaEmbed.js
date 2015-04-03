@@ -17,7 +17,7 @@ import domify from 'domify';
 
 export default (url, cb) => {
   if (typeof url !== 'string') {
-    throw new Error('valid url required for embedding');
+    return cb(new Error('valid url required for embedding'));
   }
 
   getEmbedData(url, (err, data) => {

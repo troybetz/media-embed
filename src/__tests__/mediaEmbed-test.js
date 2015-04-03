@@ -28,8 +28,10 @@ const embedData = {
  };
 
 describe('mediaEmbed', () => {
-  it('should throw an error if called with invalid `url`', () => {
-    expect(mediaEmbed).toThrow('valid url required for embedding');
+  it('should return an error if called with invalid `url`', () => {
+    mediaEmbed(undefined, (err) => {
+      expect(err.message).toBe('valid url required for embedding');
+    });
   });
 
   it('should retrieve embed data from noembed.com', () => {
