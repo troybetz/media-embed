@@ -26,6 +26,7 @@
     "jsonp": "0.0.4"
   },
   "devDependencies": {
+    "babel": "^5.0.7",
     "babel-eslint": "^2.0.2",
     "babel-jest": "^4.0.0",
     "eslint": "^0.18.0",
@@ -34,7 +35,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
-    "dist": "babel src --out-dir dist"
+    "dist": "babel src --out-dir dist",
+    "prepublish": "npm run dist"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
