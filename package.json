@@ -2,7 +2,7 @@
   "name": "media-embed",
   "version": "2.1.0",
   "description": "embed popular media formats using noembed.com",
-  "main": "index.js",
+  "main": "dist/mediaEmbed.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:compedit/media-embed.git"
@@ -26,12 +26,28 @@
     "jsonp": "0.0.4"
   },
   "devDependencies": {
-    "autoprefixer": "^4.0.0",
-    "browserify": "^6.3.2",
-    "chai": "^1.10.0",
-    "mocha": "^2.0.1",
-    "proxyquireify": "^1.1.0",
-    "sinon": "^1.12.1",
-    "watchify": "^2.1.1"
+    "babel": "^5.0.7",
+    "babel-eslint": "^2.0.2",
+    "babel-jest": "^4.0.0",
+    "eslint": "^0.18.0",
+    "jest-cli": "^0.4.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "dist": "babel src --out-dir dist",
+    "prepublish": "npm run dist"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": [
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "testPathDirs": [
+      "src"
+    ]
   }
 }

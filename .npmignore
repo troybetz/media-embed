@@ -1,3 +1,2 @@
-example
-test
-Makefile
+dist/__tests__
+src
