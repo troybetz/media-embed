@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 
-jest.dontMock('../src/index.js');
+jest.dontMock('../index.js');
 
 import jsonp from 'jsonp';
 import domify from 'domify';
-import mediaEmbed from '../src/index.js';
+import mediaEmbed from '../index.js';
 
 /**
  * Actual response from noembed.com

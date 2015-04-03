@@ -44,12 +44,8 @@
     "moduleFileExtensions": [
       "js"
     ],
-    "unmockedModulePathPatterns": [
-      "./node_modules/promise"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/example/"
+    "testPathDirs": [
+      "src"
     ]
   }
 }
