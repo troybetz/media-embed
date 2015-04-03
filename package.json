@@ -28,15 +28,18 @@
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",
     "babel-core": "^4.7.4",
+    "babel-eslint": "^2.0.2",
     "babel-jest": "^4.0.0",
     "babel-loader": "^4.1.0",
     "css-loader": "^0.9.1",
+    "eslint": "^0.18.0",
     "jest-cli": "^0.4.0",
     "style-loader": "^0.8.3",
     "webpack": "^1.7.2"
   },
   "scripts": {
     "test": "jest",
+    "lint": "eslint .",
     "dist": "babel src --out-dir dist",
     "example": "webpack --config example/webpack.config.js"
   },

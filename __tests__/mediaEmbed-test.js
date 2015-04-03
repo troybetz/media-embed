@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 jest.dontMock('../src/index.js');
 
 import jsonp from 'jsonp';
@@ -9,21 +11,21 @@ import mediaEmbed from '../src/index.js';
  */
 
 const embedData = {
-  "width" : 425,
-  "author_name" : "schmoyoho",
-  "author_url" : "http://www.youtube.com/user/schmoyoho",
-  "version" : "1.0",
-  "provider_url" : "http://www.youtube.com/",
-  "provider_name" : "YouTube",
-  "thumbnail_width" : 480,
-  "thumbnail_url" : "http://i3.ytimg.com/vi/bDOYN-6gdRE/hqdefault.jpg",
-  "height" : 344,
-  "thumbnail_height" : 360,
-  "html" : "<iframe type='text/html' width='425' height='344' src='http://www.youtube.com/embed/bDOYN-6gdRE' frameborder=0></iframe>",
-  "url" : "http://www.youtube.com/watch?v=bDOYN-6gdRE",
-  "type" : "rich",
-  "title" : "Auto-Tune the News #8: dragons. geese. Michael Vick. (ft. T-Pain)"
-};
+  'width': 425,
+  'author_name': 'schmoyoho',
+  'author_url': 'http://www.youtube.com/user/schmoyoho',
+  'version': '1.0',
+  'provider_url': 'http://www.youtube.com/',
+  'provider_name': 'YouTube',
+  'thumbnail_width': 480,
+  'thumbnail_url': 'http://i3.ytimg.com/vi/bDOYN-6gdRE/hqdefault.jpg',
+  'height': 344,
+  'thumbnail_height': 360,
+  'html': '<iframe type="text/html" width="425" height="344" src="http://www.youtube.com/embed/bDOYN-6gdRE" frameborder=0></iframe>',
+  'url': 'http://www.youtube.com/watch?v=bDOYN-6gdRE',
+  'type': 'rich',
+  'title': 'Auto-Tune the News #8: dragons. geese. Michael Vick. (ft. T-Pain)'
+ };
 
 describe('mediaEmbed', () => {
   it('should throw an error if called with invalid `url`', () => {
@@ -55,6 +57,7 @@ describe('mediaEmbed', () => {
     jsonp.mockImplementation((url, cb) => cb(null, embedData));
 
     mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes', (err, embed) => {
+      expect(err).toBeNull();
       expect(domify.mock.calls[0][0]).toEqual(embedData.html);
     });
   });
@@ -63,6 +66,7 @@ describe('mediaEmbed', () => {
     jsonp.mockImplementation((url, cb) => cb(null, embedData));
 
     mediaEmbed('https://soundcloud.com/hudsonmohawke/chimes', (err, embed, data) => {
+      expect(err).toBeNull();
       expect(data).toEqual(embedData);
     });
   });

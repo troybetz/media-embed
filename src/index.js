@@ -21,7 +21,9 @@ export default (url, cb) => {
   }
 
   getEmbedData(url, (err, data) => {
-    if (err) return cb(err);
+    if (err) {
+      return cb(err);
+    }
     cb(null, domify(data.html), data);
   });
 };
